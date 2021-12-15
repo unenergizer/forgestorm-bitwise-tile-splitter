@@ -23,11 +23,11 @@ public class SplitterMain extends ApplicationAdapter {
     @Getter
     @AllArgsConstructor
     public enum BitWiseSplitType {
-        FOUR_ORIGINAL("BW4", "input/BW4/", 4, 4, 16, 16),
-        FOUR_DOUBLE("BW4", "input/BW4H32/", 4, 4, 16, 32),
+        FOUR_ORIGINAL("BW4", "input/BW16/", 4, 4, 16, 16),
+        FOUR_DOUBLE("BW4", "input/BW16H32/", 4, 4, 16, 32),
 
-        SIXTEEN_ORIGINAL("BW16", "input/BW16/", 10, 5, 16, 16),
-        SIXTEEN_MTN_WALL("BW16", "input/BW16MTN/", 5, 3, 16, 16);
+        SIXTEEN_ORIGINAL("BW16", "input/BW48/", 10, 5, 16, 16),
+        SIXTEEN_MTN_WALL("BW16", "input/BW48MTN/", 5, 3, 16, 16);
 
         private final String fileNamePrefix;
         private final String getDirectory;
@@ -234,7 +234,7 @@ public class SplitterMain extends ApplicationAdapter {
                     total++;
                 }
             }
-            System.out.println("Job done! Sprites processed total: " + total + ", TransParentTiles: " + transparentTilesTotal + ", TilesSavedToDisk: " + tilesSavedToDisk);
+            System.out.println("Job done! Sprites processed total: " + total + ", TransparentTiles: " + transparentTilesTotal + ", TilesSavedToDisk: " + tilesSavedToDisk);
             pixmap.dispose();
         }
 
