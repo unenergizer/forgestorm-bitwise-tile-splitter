@@ -210,13 +210,13 @@ public class SplitterMain extends ApplicationAdapter {
                     switch (SPLIT_TYPE) {
                         case FOUR_ORIGINAL:
                         case FOUR_DOUBLE:
-                            updatedName = IMAGE_OUTPUT_DIR + SPLIT_TYPE.getFileNamePrefix() + "-" + fileName + "-" + bitWise16Full.get(total) + PNG;
+                            updatedName = IMAGE_OUTPUT_DIR + SPLIT_TYPE.getFileNamePrefix() + "=" + fileName + "=" + bitWise16Full.get(total) + PNG;
                             break;
                         case SIXTEEN_ORIGINAL:
-                            updatedName = IMAGE_OUTPUT_DIR + SPLIT_TYPE.getFileNamePrefix() + "-" + fileName + "-" + bitWise48Full.get(total) + PNG;
+                            updatedName = IMAGE_OUTPUT_DIR + SPLIT_TYPE.getFileNamePrefix() + "=" + fileName + "=" + bitWise48Full.get(total) + PNG;
                             break;
                         case SIXTEEN_MTN_WALL:
-                            updatedName = IMAGE_OUTPUT_DIR + SPLIT_TYPE.getFileNamePrefix() + "-" + fileName + "-" + bitWise48MtnWall.get(total) + PNG;
+                            updatedName = IMAGE_OUTPUT_DIR + SPLIT_TYPE.getFileNamePrefix() + "=" + fileName + "=" + bitWise48MtnWall.get(total) + PNG;
                             break;
                     }
 
@@ -260,8 +260,8 @@ public class SplitterMain extends ApplicationAdapter {
 
     public static Color valueOf(int color) {
         float r = ((color >> 16) & 0xff) / 255.0f;
-        float g = ((color >>  8) & 0xff) / 255.0f;
-        float b = ((color      ) & 0xff) / 255.0f;
+        float g = ((color >> 8) & 0xff) / 255.0f;
+        float b = ((color) & 0xff) / 255.0f;
         float a = ((color >> 24) & 0xff) / 255.0f;
         return new Color(r, g, b, a);
     }
