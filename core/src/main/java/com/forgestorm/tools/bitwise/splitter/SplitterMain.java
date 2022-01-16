@@ -18,7 +18,7 @@ import lombok.Getter;
 
 public class SplitterMain extends ApplicationAdapter {
 
-    private static final BitWiseSplitType SPLIT_TYPE = BitWiseSplitType.SIXTEEN_MTN_WALL;
+    private static final BitWiseSplitType SPLIT_TYPE = BitWiseSplitType.SIXTEEN_TABLE;
 
     @Getter
     @AllArgsConstructor
@@ -27,7 +27,8 @@ public class SplitterMain extends ApplicationAdapter {
         FOUR_DOUBLE("BW4", "input/BW16H32/", 4, 4, 16, 32),
 
         SIXTEEN_ORIGINAL("BW16", "input/BW48/", 10, 5, 16, 16),
-        SIXTEEN_MTN_WALL("BW16", "input/BW48MTN/", 5, 3, 16, 16);
+        SIXTEEN_MTN_WALL("BW16", "input/BW48MTN/", 5, 3, 16, 16),
+        SIXTEEN_TABLE("BW16", "input/BW48TBL/", 6, 4, 16, 16);
 
         private final String fileNamePrefix;
         private final String getDirectory;
@@ -44,6 +45,7 @@ public class SplitterMain extends ApplicationAdapter {
     private final HashMap<Integer, Integer> bitWise16Full;
     private final HashMap<Integer, Integer> bitWise48Full;
     private final HashMap<Integer, Integer> bitWise48MtnWall;
+    private final HashMap<Integer, Integer> bitWise48Table;
 
     public SplitterMain() {
         // Original full 16
@@ -134,7 +136,6 @@ public class SplitterMain extends ApplicationAdapter {
         bitWise48Full.put(48, 91);
         bitWise48Full.put(49, 94);
 
-
         // Modified bitwise 48 for compact mountain wall
         bitWise48MtnWall = new HashMap<>();
         // Row 1
@@ -157,6 +158,41 @@ public class SplitterMain extends ApplicationAdapter {
         bitWise48MtnWall.put(12, 104);
         bitWise48MtnWall.put(13, 126);
         bitWise48MtnWall.put(14, 219);
+
+
+        // Modified bitwise 48 for compact tables
+        bitWise48Table = new HashMap<>();
+        // Row 1
+        bitWise48Table.put(0, 22);
+        bitWise48Table.put(1, 31);
+        bitWise48Table.put(2, 11);
+        bitWise48Table.put(3, 2);
+        bitWise48Table.put(4, 18); // 251 (old/wrong id)
+        bitWise48Table.put(5, 10); // 254 (old/wrong id)
+
+        // Row 2
+        bitWise48Table.put(6, 214);
+        bitWise48Table.put(7, 255);
+        bitWise48Table.put(8, 107);
+        bitWise48Table.put(9, 66);
+        bitWise48Table.put(10, 80); // 127 (old/wrong id)
+        bitWise48Table.put(11, 72); // 223 (old/wrong id)
+
+        // Row 3
+        bitWise48Table.put(12, 208);
+        bitWise48Table.put(13, 248);
+        bitWise48Table.put(14, 104);
+        bitWise48Table.put(15, 64);
+        // 16 blank
+        // 17 blank
+
+        // Row 4
+        bitWise48Table.put(18, 16);
+        bitWise48Table.put(19, 24);
+        bitWise48Table.put(20, 8);
+        bitWise48Table.put(21, 0);
+        // 22 blank
+        // 23 blank
     }
 
     @Override
@@ -217,6 +253,9 @@ public class SplitterMain extends ApplicationAdapter {
                             break;
                         case SIXTEEN_MTN_WALL:
                             updatedName = IMAGE_OUTPUT_DIR + SPLIT_TYPE.getFileNamePrefix() + "=" + fileName + "=" + bitWise48MtnWall.get(total) + PNG;
+                            break;
+                        case SIXTEEN_TABLE:
+                            updatedName = IMAGE_OUTPUT_DIR + SPLIT_TYPE.getFileNamePrefix() + "=" + fileName + "=" + bitWise48Table.get(total) + PNG;
                             break;
                     }
 
